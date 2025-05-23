@@ -1,92 +1,96 @@
-ClubChain, üniversite kulüpleri için geliştirilen, token tabanlı, Stellar esinli bir topluluk otomasyon sistemidir. Rust diliyle yazılmıştır ve kulüp içi işlemleri şeffaf, denetlenebilir ve katılımcı hale getirmeyi hedefler.
+# 🚀 ClubChains
 
-🚀 Özellikler
+**ClubChains**, kulüp içi üyelik, oy verme, etkinlik yönetimi ve finansal işlemleri takip eden bir otomasyon sistemidir. Stellar Soroban akıllı kontrat platformuna entegre edilerek zincir üstü güvenli işlemler sağlar.
 
-🎓 Üyelik kaydı ve listeleme
+## 🛠 Özellikler
 
-🗳️ Oy kullanma, oy devri ve engelleme (delegation/freeze)
+### ✅ Üyelik & Oy Sistemi
+- Üye kaydı
+- Oy kullanma
+- Oy hakkı devretme (delegasyon)
+- Üyeyi engelleme
 
-💰 Token yönetimi: mint ve burn (oy gücü arttır/azalt)
+### 💬 Etkileşim & Raporlama
+- Etki skoru raporu
+- Üye listesi ve oy kayıtları
+- Etkinlik oluşturma ve listeleme
+- Sertifika verme ve listeleme
 
-📅 Etkinlik oluşturma ve listeleme
+### 💰 Finansal İşlemler
+- Gelir ekleme
+- Gider ekleme
+- Finansal rapor görüntüleme
 
-📜 Sertifika verme ve listeleme
+### 🪙 Soroban Token Entegrasyonu (Zincir Üstü)
+- Token mint (zincir üstü)
+- Token burn (zincir üstü)
+- Stellar Testnet destekli kontrat çağrıları (invoke)
 
-💼 Gelir-gider takibi ve finansal raporlama
+## 📦 Proje Yapısı
 
-📊 Etkinlik ve sertifika raporları
-
-🧪 Demo verisi yükleme ile hızlı test
-
-🏗 Proje Yapısı
-
-clubchain/
+```
+clubchains/
+├── src/
+│   ├── logic/           # İş kuralları (mint, burn, vote, delegate...)
+│   ├── contracts/       # Soroban kontratları (.wasm)
+│   ├── menu.rs          # CLI ana menü
+│   ├── models.rs        # Veri modelleri
+│   ├── storage.rs       # JSON veri kaydı
+│   └── main.rs          # Program başlangıcı
 ├── Cargo.toml
-└── src/
-    ├── main.rs
-    ├── menu.rs
-    ├── models.rs
-    ├── storage.rs
-    ├── demo.rs
-    └── logic/
-        ├── mod.rs
-        ├── join.rs
-        ├── vote.rs
-        ├── delegate.rs
-        ├── freeze.rs
-        ├── mint.rs
-        ├── burn.rs
-        ├── event.rs
-        ├── income.rs
-        ├── expense.rs
-        ├── certificate.rs
-        ├── financialreport.rs
-        └── report.rs
+└── README.md
+```
 
-⚙️ Kurulum ve Çalıştırma
+## 🧪 Kullanım
 
-cargo build
+```bash
 cargo run
+```
 
-🧪 Demo Modu
+CLI menüsünden interaktif olarak tüm işlemleri gerçekleştirebilirsiniz.
 
-İlk testler için menüden 15. Demo Verileri Yükle seçeneğini kullanın. Bu işlem:
+## 🔗 Soroban Entegrasyonu
 
-5 üyeyi
+### .wasm Oluşturma
 
-1 oyu
+```bash
+cargo build --target wasm32-unknown-unknown --release
+```
 
-1 etkinliği
+### Kontratı Testnet’e Deploy Et
 
-1 sertifikayı
+```bash
+stellar contract deploy \
+  --wasm target/wasm32-unknown-unknown/release/clubchains.wasm \
+  --source fatih276 \
+  --network testnet
+```
 
-1 gelir + 1 gideri otomatik olarak oluşturur.
+### Token Mint Örneği
+```bash
+stellar contract invoke \
+  --id <CONTRACT_ID> \
+  --source fatih276 \
+  --network testnet \
+  -- mint \
+  --to <USER_ADDRESS> \
+  --amount 100
+```
 
-📂 Kaydedilen Veri
+> NOT: `--source` için kimliğinizin Soroban CLI ile oluşturulmuş olması gerekir:
+> ```bash
+> stellar keys generate fatih276 --network testnet
+> ```
 
-Tüm veriler chain.json dosyasında saklanır. Program kapansa bile veri korunur.
+## 💼 Geliştirici Bilgisi
 
-🧭 Menüden Yapılabilecekler
+Proje, **Rise In x Patika.dev x Stellar Rust Hackathon 2025** kapsamında geliştirilmiştir.
 
-1. Üye Kaydı
-2. Oy Kullan
-3. Oy Hakkı Devret (Delegasyon)
-4. Kullanıcıyı Engelle
-5. Etki Skoru Raporu
-6. Üye Listesi
-7. Oy Kayıtları
-8. Token Ver (Mint)
-9. Token Eksilt (Burn)
-10. Etkinlik Oluştur
-11. Gelir Ekle
-12. Gider Ekle
-13. Sertifika Ver
-14. Finansal Rapor
-15. Demo Verileri Yükle
-16. Etkinlik Listesi
-17. Sertifika Listesi
-0. Çıkış
+Geliştirici: **Fatih Erdoğan**  
+GitHub: [github.com/FatihErdogan1](https://github.com/FatihErdogan1)
 
-📄 Lisans
+---
 
-MIT Lisansı
+## 📃 Lisans
+
+MIT License
