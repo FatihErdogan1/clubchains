@@ -1,0 +1,16 @@
+[package]
+name = "clubchain_contracts"
+version = "0.1.0"
+edition = "2021"
+
+[lib]
+crate-type = ["cdylib"]
+path = "lib.rs"
+
+[dependencies]
+soroban-sdk = "20.0.0"
+
+[profile.release]
+lto = true
+opt-level = "z"
+codegen-units = 1
