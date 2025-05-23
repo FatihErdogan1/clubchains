@@ -1,0 +1,176 @@
+{
+  "members": [
+    {
+      "name": "Ece",
+      "club": "Yapay Zeka",
+      "vote_power": 2,
+      "delegated_to": null,
+      "is_frozen": false
+    },
+    {
+      "name": "Ahmet",
+      "club": "Robotik",
+      "vote_power": 2,
+      "delegated_to": null,
+      "is_frozen": true
+    },
+    {
+      "name": "Zeynep",
+      "club": "Girişimcilik",
+      "vote_power": 2,
+      "delegated_to": null,
+      "is_frozen": false
+    },
+    {
+      "name": "Mehmet",
+      "club": "Yapay Zeka",
+      "vote_power": 2,
+      "delegated_to": null,
+      "is_frozen": false
+    },
+    {
+      "name": "Ayşe",
+      "club": "Robotik",
+      "vote_power": 2,
+      "delegated_to": null,
+      "is_frozen": false
+    },
+    {
+      "name": "fatih",
+      "club": "mis",
+      "vote_power": 1,
+      "delegated_to": null,
+      "is_frozen": false
+    },
+    {
+      "name": "Ece",
+      "club": "Yapay Zeka",
+      "vote_power": 2,
+      "delegated_to": null,
+      "is_frozen": false
+    },
+    {
+      "name": "Ahmet",
+      "club": "Robotik",
+      "vote_power": 2,
+      "delegated_to": null,
+      "is_frozen": false
+    },
+    {
+      "name": "Zeynep",
+      "club": "Girişimcilik",
+      "vote_power": 2,
+      "delegated_to": null,
+      "is_frozen": false
+    },
+    {
+      "name": "Mehmet",
+      "club": "Yapay Zeka",
+      "vote_power": 2,
+      "delegated_to": null,
+      "is_frozen": false
+    },
+    {
+      "name": "Ayşe",
+      "club": "Robotik",
+      "vote_power": 2,
+      "delegated_to": null,
+      "is_frozen": false
+    }
+  ],
+  "votes": [
+    {
+      "topic": "Etkinlik Lokasyonu",
+      "voter": "Ece",
+      "option": "İstanbul"
+    },
+    {
+      "topic": "Hackatlon",
+      "voter": "Ece",
+      "option": "1"
+    },
+    {
+      "topic": "hackatlon",
+      "voter": "Ece",
+      "option": "evet"
+    },
+    {
+      "topic": "Etkinlik Lokasyonu",
+      "voter": "Ece",
+      "option": "İstanbul"
+    },
+    {
+      "topic": "x",
+      "voter": "Ece",
+      "option": "x"
+    }
+  ],
+  "events": [
+    {
+      "name": "Rust Hackathon",
+      "organizer": "Yapay Zeka",
+      "date": "2025-05-23T12:46:20.054998137+00:00"
+    },
+    {
+      "name": "Hackatlon",
+      "organizer": "tolga",
+      "date": "2025-05-23T12:49:51.478537351+00:00"
+    },
+    {
+      "name": "Rust Hackathon",
+      "organizer": "Yapay Zeka",
+      "date": "2025-05-23T12:59:41.223550447+00:00"
+    }
+  ],
+  "certificates": [
+    {
+      "event": "Rust Hackathon",
+      "recipient": "Ahmet",
+      "token_id": "CERT-123456"
+    },
+    {
+      "event": "Rust Hackathon",
+      "recipient": "Ahmet",
+      "token_id": "CERT-123456"
+    },
+    {
+      "event": "Kotlin101",
+      "recipient": "Ece",
+      "token_id": "CERT-1748005775"
+    }
+  ],
+  "income": [
+    {
+      "amount": 5000.0,
+      "source": "Stellar",
+      "description": "Sponsor destek",
+      "timestamp": "2025-05-23T12:46:20.055015139+00:00"
+    },
+    {
+      "amount": 5000.0,
+      "source": "Stellar",
+      "description": "Sponsor destek",
+      "timestamp": "2025-05-23T12:59:41.223557730+00:00"
+    }
+  ],
+  "expenses": [
+    {
+      "amount": 1200.0,
+      "purpose": "Pizza ve içecek",
+      "invoice_no": "INV-001",
+      "timestamp": "2025-05-23T12:46:20.055018555+00:00"
+    },
+    {
+      "amount": 15.0,
+      "purpose": "asfda",
+      "invoice_no": "2123",
+      "timestamp": "2025-05-23T12:47:03.329008771+00:00"
+    },
+    {
+      "amount": 1200.0,
+      "purpose": "Pizza ve içecek",
+      "invoice_no": "INV-001",
+      "timestamp": "2025-05-23T12:59:41.223559043+00:00"
+    }
+  ]
+}
