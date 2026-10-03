@@ -1,96 +1,65 @@
-# 🚀 ClubChains
+# ClubChains
 
-**ClubChains**, kulüp içi üyelik, oy verme, etkinlik yönetimi ve finansal işlemleri takip eden bir otomasyon sistemidir. Stellar Soroban akıllı kontrat platformuna entegre edilerek zincir üstü güvenli işlemler sağlar.
+A Rust command-line prototype for managing university clubs — membership, voting with delegation, events, certificates and club finances — with a minimal **Stellar Soroban** smart contract for minting club tokens on testnet.
+Built for the **Rise In × Patika.dev × Stellar Rust Hackathon 2025**.
 
-## 🛠 Özellikler
+> Türkçe açıklama: [README.tr.md](README.tr.md)
 
-### ✅ Üyelik & Oy Sistemi
-- Üye kaydı
-- Oy kullanma
-- Oy hakkı devretme (delegasyon)
-- Üyeyi engelleme
+## Features
 
-### 💬 Etkileşim & Raporlama
-- Etki skoru raporu
-- Üye listesi ve oy kayıtları
-- Etkinlik oluşturma ve listeleme
-- Sertifika verme ve listeleme
+**Membership & governance**
+- Register members (each starts with 1 vote power) and freeze/block members
+- Cast votes on topics — frozen members and members without vote power are rejected
+- Delegate voting rights to another member
+- Impact-score report (members, total vote power, frozen and delegated counts, total votes), member list and vote log
 
-### 💰 Finansal İşlemler
-- Gelir ekleme
-- Gider ekleme
-- Finansal rapor görüntüleme
+**Events & certificates**
+- Create and list events
+- Issue and list participation certificates (`CERT-<timestamp>` IDs)
 
-### 🪙 Soroban Token Entegrasyonu (Zincir Üstü)
-- Token mint (zincir üstü)
-- Token burn (zincir üstü)
-- Stellar Testnet destekli kontrat çağrıları (invoke)
+**Finances**
+- Record income and expenses, view a financial summary with net balance
 
-## 📦 Proje Yapısı
+**Soroban integration**
+- "Mint token" / "Burn token" menu options call `stellar contract invoke` on **Stellar testnet** against a deployed contract
+- `src/contracts/` contains a Soroban contract (soroban-sdk 20) with `mint` and `balance` functions, storing balances in contract instance storage
+
+**Other**
+- Interactive menu (Turkish UI) with a demo-data loader
+- State persisted between runs in a local `chain.json` file (serde/serde_json)
+
+## Tech Stack
+
+- Rust (edition 2024), `serde`, `serde_json`, `chrono`
+- Stellar Soroban SDK 20 (contract), Stellar CLI (testnet invocations)
+
+## Project Structure
 
 ```
-clubchains/
-├── src/
-│   ├── logic/           # İş kuralları (mint, burn, vote, delegate...)
-│   ├── contracts/       # Soroban kontratları (.wasm)
-│   ├── menu.rs          # CLI ana menü
-│   ├── models.rs        # Veri modelleri
-│   ├── storage.rs       # JSON veri kaydı
-│   └── main.rs          # Program başlangıcı
-├── Cargo.toml
-└── README.md
+src/
+├── main.rs        # entry point
+├── menu.rs        # interactive CLI menu
+├── models.rs      # Member, Vote, Event, Certificate, Income, Expense, Chain
+├── storage.rs     # load/save state as chain.json
+├── demo.rs        # sample data loader
+├── logic/         # one module per action (join, vote, delegate, freeze, mint, burn, event, income, expense, certificate, reports)
+└── contracts/     # Soroban token contract (separate crate)
 ```
 
-## 🧪 Kullanım
+## Running
+
+Requires a Rust toolchain that supports edition 2024 (Rust 1.85+).
 
 ```bash
 cargo run
 ```
 
-CLI menüsünden interaktif olarak tüm işlemleri gerçekleştirebilirsiniz.
+The mint/burn options additionally need the [Stellar CLI](https://developers.stellar.org/docs/tools/cli) on your `PATH` with a testnet identity. The contract ID and identity names are hard-coded in `src/logic/mint.rs` and `src/logic/burn.rs` (e.g. `stellar keys generate fatih276 --network testnet`).
 
-## 🔗 Soroban Entegrasyonu
+## Status
 
-### .wasm Oluşturma
-
-```bash
-cargo build --target wasm32-unknown-unknown --release
-```
-
-### Kontratı Testnet’e Deploy Et
-
-```bash
-stellar contract deploy \
-  --wasm target/wasm32-unknown-unknown/release/clubchains.wasm \
-  --source fatih276 \
-  --network testnet
-```
-
-### Token Mint Örneği
-```bash
-stellar contract invoke \
-  --id <CONTRACT_ID> \
-  --source fatih276 \
-  --network testnet \
-  -- mint \
-  --to <USER_ADDRESS> \
-  --amount 100
-```
-
-> NOT: `--source` için kimliğinizin Soroban CLI ile oluşturulmuş olması gerekir:
-> ```bash
-> stellar keys generate fatih276 --network testnet
-> ```
-
-## 💼 Geliştirici Bilgisi
-
-Proje, **Rise In x Patika.dev x Stellar Rust Hackathon 2025** kapsamında geliştirilmiştir.
-
-Geliştirici: **Fatih Erdoğan**  
-GitHub: [github.com/FatihErdogan1](https://github.com/FatihErdogan1)
+Hackathon prototype. Club records live in the local JSON file; only token mint/burn calls go on-chain. The contract crate in `src/contracts/` is not part of the main Cargo build, and it currently implements `mint` and `balance` only (no `burn`).
 
 ---
 
-## 📃 Lisans
-
-MIT License
+**Author:** Fatih Erdoğan
